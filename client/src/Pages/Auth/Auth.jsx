@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import icon from '../../assets/icon.png';
-
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login, signup } from '../../actions/auth';
+import icon from '../../assets/icon.png';
 import AboutAuth from './AboutAuth';
 import './Auth.css';
 
@@ -58,10 +57,10 @@ const Auth = () => {
             <input type="email" name='email' id='email' onChange={(e) =>{setEmail(e.target.value)}}/>
           </label>
             <label htmlFor="password">
-              <div style={{display:'flex', justifyContent:'space-beteen'}}>
-                <h4>Password</h4>
-                { !isSignup && <p style={{color:"#007ac6" ,font:'13px'}}>forgot password?</p>}
-              </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <h4>Password</h4>
+              {!isSignup && <Link to="/forgot-password" style={{ color: '#007ac6', fontSize: '13px' }}>forgot password?</Link>}
+            </div>
               <input type="password" name='password' id='password' onChange={(e) =>{setPassword(e.target.value)}}/>
               {isSignup && <p style={{color:"#666767",fontSize:"13px"}}>Passwords Must contain atleast eight<br/> characters, including at least 1 letter and 1 number.</p>}
             </label>
