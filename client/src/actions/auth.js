@@ -22,22 +22,31 @@ export const login = (authData, navigate) => async (dispatch) => {
     console.log(error);
   }
 };
-export const forgotPassword = (formData) => async (dispatch) => {
+export const forgotPassword = (email) => async (dispatch) => {
   try {
-    const { data } = await api.forgotPassword(formData);
+    await api.forgotPassword(email);
     alert('Reset link sent to your email');
-    // Optionally, redirect to a success page or display a success message
   } catch (error) {
-    console.error(error);
+    console.log(error);
     alert('Error sending reset link');
   }
 };
 
-export const resetPassword = ({ token, password }) => async (dispatch) => {
+export const resendResetPasswordEmail = (email) => async (dispatch) => {
   try {
-    const { data } = await api.resetPassword({ token, password });
+    await api.resendResetPasswordEmail(email);
+    alert('Reset link resent to your email');
+  } catch (error) {
+    console.log(error);
+    alert('Error resending reset link');
+  }
+};
+
+export const resetPassword = (token, newPassword, navigate) => async (dispatch) => {
+  try {
+    await api.resetPassword(token, newPassword);
     alert('Password reset successful');
-    // Optionally, redirect to login page or any other appropriate page
+    navigate('/login');
   } catch (error) {
     console.log(error);
     alert('Error resetting password');

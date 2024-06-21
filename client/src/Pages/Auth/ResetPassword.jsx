@@ -1,34 +1,33 @@
+// components/Auth/ResetPassword.js
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { resetPassword } from '../../actions/auth';
 import './Auth.css';
 
-const ResetPassword = ({ token }) => {
-  const [password, setPassword] = useState('');
+const ResetPassword = () => {
+  const [newPassword, setNewPassword] = useState('');
+  const { token } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleResetPassword = (e) => {
     e.preventDefault();
-    if (!password) {
-      alert('Please enter your new password');
-      return;
-    }
-    dispatch(resetPassword({ token, password }));
+    dispatch(resetPassword(token, newPassword, navigate));
   };
 
   return (
-    <section className='auth-section'>
-      <div className='auth-container-2'>
-        <h2>Reset Password</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="password">
-            <h4>New Password</h4>
-            <input type="password" name='password' id='password' onChange={(e) => setPassword(e.target.value)} />
-          </label>
-          <button type='Submit' className='auth-btn'>Reset Password</button>
-        </form>
-      </div>
-    </section>
+    <div className="auth-container">
+      <h2>Reset Password</h2>
+      <form onSubmit={handleResetPassword}>
+        <label htmlFor="newPassword">
+          <h4>New Password</h4>
+          <input type="password" name="newPassword" id="newPassword" onChange={(e) => setNewPassword(e.target.value)} />
+        </label>
+        <button type="submit" className="auth-btn">Reset Password</button>
+      </form>
+    </div>
   );
 };
 
