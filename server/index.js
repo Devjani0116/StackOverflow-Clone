@@ -16,7 +16,7 @@ app.get('/',(req,res) => {
 
 })
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://stackoverflow-productions1.netlify.app/',
     credentials: true
 }));
  app.use('/user',userRoutes)

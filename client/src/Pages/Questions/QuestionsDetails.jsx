@@ -80,7 +80,7 @@ const QuestionsDetails = () => {
      const Navigate =useNavigate()
      const dispatch =useDispatch()
      const location =useLocation()
-     const url='https://stackoverflow-productions.netlify.app/'
+     const url='https://stackoverflow-productions1.netlify.app/'
      const User =useSelector ((state) => (state.currentUserReducer))
      const handlePostAns =(e,answerLength) =>{
         e.preventDefault()
