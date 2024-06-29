@@ -1,6 +1,6 @@
+import { toast } from 'react-toastify';
 import * as api from '../api';
 import { setCurrentUser } from './currentUser';
-
 export const signup = (authData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.signUp(authData);
@@ -10,7 +10,7 @@ export const signup = (authData, navigate) => async (dispatch) => {
   } catch (error) {
     console.log( error);
   }
-};
+}
 
 export const login = (authData, navigate) => async (dispatch) => {
   try {
@@ -22,33 +22,24 @@ export const login = (authData, navigate) => async (dispatch) => {
     console.log(error);
   }
 };
-export const forgotPassword = (email) => async (dispatch) => {
-  try {
-    await api.forgotPassword(email);
-    alert('Reset link sent to your email');
-  } catch (error) {
-    console.log(error);
-    alert('Error sending reset link');
-  }
-};
 
-export const resendResetPasswordEmail = (email) => async (dispatch) => {
+export const forgotPassword = (emailOrPhone) => async (dispatch) => {
   try {
-    await api.resendResetPasswordEmail(email);
-    alert('Reset link resent to your email');
+    await api.forgotPassword(emailOrPhone);
+    toast.success('Password reset link sent to your email or phone.');
   } catch (error) {
     console.log(error);
-    alert('Error resending reset link');
+    toast.error('Failed to send password reset link. Please try again.');
   }
 };
 
 export const resetPassword = (token, newPassword, navigate) => async (dispatch) => {
   try {
     await api.resetPassword(token, newPassword);
-    alert('Password reset successful');
-    navigate('/login');
+    navigate('/auth');
+    toast.success('Password reset successful. Please log in with your new password.');
   } catch (error) {
     console.log(error);
-    alert('Error resetting password');
+    toast.error('Failed to reset password. Please try again.');
   }
 };

@@ -15,6 +15,10 @@ app.get('/',(req,res) => {
     res.send("This is a stack overflow clone")
 
 })
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
  app.use('/user',userRoutes)
  app.use('/questions',questionRoutes)
  app.use('/answer',answerRoutes)

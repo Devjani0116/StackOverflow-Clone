@@ -1,4 +1,4 @@
-// components/Auth/ResetPassword.js
+// ResetPassword.jsx
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -8,24 +8,41 @@ import './Auth.css';
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const { token } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleResetPassword = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (newPassword !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
     dispatch(resetPassword(token, newPassword, navigate));
   };
 
   return (
-    <div className="auth-container">
+    <div className='auth-container'>
       <h2>Reset Password</h2>
-      <form onSubmit={handleResetPassword}>
-        <label htmlFor="newPassword">
-          <h4>New Password</h4>
-          <input type="password" name="newPassword" id="newPassword" onChange={(e) => setNewPassword(e.target.value)} />
-        </label>
-        <button type="submit" className="auth-btn">Reset Password</button>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="newPassword">Enter your new password:</label>
+        <input
+          type="password"
+          id="newPassword"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          required
+        />
+        <label htmlFor="confirmPassword">Confirm your new password:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+        <button type="submit" className='auth-btn'>Reset Password</button>
       </form>
     </div>
   );
