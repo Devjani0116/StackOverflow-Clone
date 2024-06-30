@@ -7,8 +7,6 @@ import mongoose from "mongoose";
     about:{type:String },
     tags:{type: [String] },
     joinedOn:{type:Date,default:Date.now},
-    resetPasswordToken: String,
-  resetPasswordExpires: Date,
  })
 
  export default mongoose.model("User",userSchema)
