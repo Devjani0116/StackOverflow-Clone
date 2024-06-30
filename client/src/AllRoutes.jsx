@@ -2,8 +2,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AskQuestion from './Pages/AskQuestion/AskQuestion';
 import Auth from './Pages/Auth/Auth';
-import ForgotPassword from './Pages/Auth/ForgotPassword';
-import ResetPassword from './Pages/Auth/ResetPassword';
 import Home from './Pages/Home/Home';
 import DisplayQuestion from './Pages/Questions/DisplayQuestion';
 import Questions from './Pages/Questions/Questions';
@@ -22,8 +20,6 @@ const AllRoutes = () => {
       <Route path="/tags" element={<Tags />} />
       <Route path="/users" element={<Users />} />
       <Route path="/users/:id" element={<UserProfile />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/reset-password/:token" element={<ResetPassword />} />
     </Routes>
   );
 }
