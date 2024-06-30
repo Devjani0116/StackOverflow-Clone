@@ -15,8 +15,6 @@ export const postQuestion = (questionData) => API.post('/questions/Ask', questio
 export const getAllQuestions = () => API.get('/questions/get');
 export const deleteQuestion = (id) => API.delete(`/questions/delete/${id}`);
 export const voteQuestion = (id, value, userId) => API.patch(`/questions/vote/${id}`, { value, userId });
-export const forgotPassword = (emailOrPhone) => API.post("/user/forgot-password", { emailOrPhone });
-export const resetPassword = (token, newPassword) => API.post(`/user/reset-password/${token}`, { newPassword });
 
 export const postAnswer = (id, noOfAnswers, answerBody, userAnswered, userId) =>
   API.patch(`/answer/post/${id}`, { noOfAnswers, answerBody, userAnswered, userId });
